@@ -10,18 +10,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
   <body class="container">
-    <form action="enviar.php" method="POST" class="row" id="formulario">
+    <form action="enviar.php" method="POST" class="row" id="formulario"> <!-- los formulrios siempre con post para que sea mas seguro-->
 
         <label for="nombre" class="col-2">Nombre<span class="requerido">*</span>:</label>
-        <input type="text" name="nombre" id="nombre" class="col-4">
+        <input type="text" name="nombre" id="nombre" class="col-4" required>
         <div class="w-100"></div>  
 
         <label for="email" class="col-2">Email<span class="requerido">*</span>:</label>
-        <input type="text" name="email" id="email" class="col-4">
+        <input type="email" name="email" id="email" class="col-4" required>
         <div class="w-100"></div>
 
         <label for="edad" class="col-2">Edad<span class="requerido">*</span>:</label>
-        <input type="number" name="edad" id="edad" class="col-1">
+        <input type="number" name="edad" id="edad" class="col-1" min="18" max="120"required>
         <div class="w-100"></div>
 
         <input type="submit" value="enviar" id="submit" class="col-2">
@@ -29,6 +29,7 @@
         </form>
       
     <!-- Optional JavaScript -->
+    <script src="validar.js"></script>
     
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

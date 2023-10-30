@@ -4,9 +4,9 @@ const email = document.getElementById("email");
 const edad = document.getElementById("edad");
 const boton = document.getElementById("submit");
 
-const nombreError = document.getElementById("errorNombre");
-const emailError = document.getElementById("errorEmail");
-const edadError = document.getElementById("errorEdad");
+const nombreError = document.querySelector("#errorNombre span");
+const emailError = document.querySelector("#errorEmail span");
+const edadError = document.querySelector("#errorEdad span");
 
 
 /*https://developer.mozilla.org/es/docs/Learn/Forms/Form_validation*/
@@ -17,21 +17,21 @@ const edadError = document.getElementById("errorEdad");
 
 //PASO 1: Personalizar mensaje de validación
 //Indicar mayoría de edad
-function validaEdad() {
-    let test = true;
-    if (edad.validity.valueMissing){
-        edad.setCustomValidity("Introduce una edad correcta (+18)")
-        test = false;
-    } else if (edad.value.rangeOverflow) {
-        edad.setCustomValidity("Introduce una edad menor a 120");
-        test = false;
-    } else if (edad.value.rangeUnderflow) {
-        edad.setCustomValidity("Introduce una edad mayor a 18");
-        test = false;
-    }
-    return test;
-}
-edad.addEventListener('input', validaEdad());
+// function validaEdad() {
+//     let test = true;
+//     if (edad.validity.valueMissing){
+//         edad.setCustomValidity("Introduce una edad correcta (+18)")
+//         test = false;
+//     } else if (edad.value.rangeOverflow) {
+//         edad.setCustomValidity("Introduce una edad menor a 120");
+//         test = false;
+//     } else if (edad.value.rangeUnderflow) {
+//         edad.setCustomValidity("Introduce una edad mayor a 18");
+//         test = false;
+//     }
+//     return test;
+// }
+//edad.addEventListener('input', validaEdad);
 
 //Paso 2: Configurar mensaje la primera vez
 //validaEdad(); // para inicializar el mensaje la primera vez
@@ -62,21 +62,38 @@ function validaEmail() {
     return test;
 }
 
-validaEmail();
-email.addEventListener('blur', validaEmail); //cuando pierde el foco, valida
+//validaEmail();
+//email.addEventListener('blur', validaEmail); //cuando pierde el foco, valida
 function validaFormulario(event) {
     let test = true; //guardamos si es valido o no y comprobamos. Si no cumple, se pone a falso
+    // !nombre.validity.valid : comprueba requisitos html, se puede usar y obviar validaNombre
+    // si solo es requerido para que no este vacio, validity valid es mas rapido
+    // no hay que hacer funcion aparte
     if (!validaNombre()){
+        nombreError.innerText = "El nombre no puede estar vacío";
+        nombreError.className = "error active";
         test = false;
+    } else {
+        nombreError.className = "error";
+        nombreError.innerText = "";
     }
 
     if (!validaEmail()){
         emailError.innerText = email.validationMessage;
+        emailError.className = "error active";
         test = false;
+    } else {
+        emailError.className = "error";
+        emailError.innerText = ""; //limpiar error, quitar active
     }
 
     if (!validaEdad()){
+        edadError.innerText = edad.validationMessage;
+        edadError.className = "error active";
         test = false;
+    } else {
+        edadError.className = "error";
+        edadError.innerText = "";
     }
 
     //DECIDIR SI SE ENVIA EL FORMULARIO
@@ -94,7 +111,7 @@ formulario.addEventListener('submit', validaFormulario);
 
 
 //PASO 4: Eliminar validación automática del navegador
-//formulario.setAttribute('novalidate', true); //novalidate envia siempre
+formulario.setAttribute('novalidate', true); //novalidate envia siempre
 
 
 //PASO 5: Añadir validación únicamente Javascript (Requisito paso 4)
@@ -102,8 +119,19 @@ formulario.addEventListener('submit', validaFormulario);
 function validaNombre() {
     return true;
 }
-function validaEdadHTML5(){
-
+function validaEdad() { //hacemos otra funcion para que devuelva true o false
+    let test = true;
+    if (edad.validity.valueMissing){
+        edad.setCustomValidity("Introduce una edad correcta (+18)")
+        test = false;
+    } else if (edad.value.rangeOverflow) {
+        edad.setCustomValidity("Introduce una edad menor a 120");
+        test = false;
+    } else if (edad.value.rangeUnderflow) {
+        edad.setCustomValidity("Introduce una edad mayor a 18");
+        test = false;
+    }
+    return test;
 }
 
 function validaEdadJS(){

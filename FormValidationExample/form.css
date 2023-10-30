@@ -1,5 +1,6 @@
 
 .requerido {
+    /*asterisco*/
     color:#900;
     font-size:smaller;
 }
@@ -40,6 +41,11 @@ input[type="email"] {
   
     box-sizing: border-box;
   }
+
+  /*Si quitamos el texto, la clase active sigue saliendo
+  si hay error - añade active
+  si no hay - quita active para que no se vea
+  "col-2 error active p-2"   ->     añade padding, m- margin*/
   
   .error.active {
     padding: 0.3em;

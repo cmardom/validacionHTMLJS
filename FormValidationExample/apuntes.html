@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apuntes</title>
+</head>
+<body>
+<main>
+    <h1>Apuntes Validación HTML5</h1>
+    <h2>1. Por atributos de html: </h2>
+    <ul>
+        <li>required</li>
+        <li>map</li>
+        <li>pattern</li>
+        <li>...</li>
+    </ul>
+    <h2>2. Se asignan los mensajes de validación: validation message</h2>
+    <h3>setCustomValidity</h3>
+    <p>Se gestionan las pseudoclases :valid y :invalid</p>
+    <h2>3. noValidate</h2>
+    <p>Si no tiene novalidate:    </p>
+    <ul>
+        <li>validity.valid : si no hay mensaje de validación, está correcto: se envía</li>
+        <li>validty.valid : hay mensaje porque está mal, se muestra y no se envía formulario</li>
+        </ul>
+    <p>Si tiene novalidate, se enviaría automáticamente por html5:    </p>
+    <ul>
+        <li>prevent default : no se envía</li>
+        <li>no prevent default : se envía</li>
+    </ul>
+</main>
+</body>
+</html>

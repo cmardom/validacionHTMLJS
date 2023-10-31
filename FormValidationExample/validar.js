@@ -117,7 +117,12 @@ formulario.setAttribute('novalidate', true); //novalidate envia siempre
 //PASO 5: Añadir validación únicamente Javascript (Requisito paso 4)
 
 function validaNombre() {
-    return true;
+    if (!nombre.validity.valid){
+        nombre.setCustomValidity("el nombre es obligatorio");
+        return false;
+    } else {
+        return true;
+    }
 }
 function validaEdad() { //hacemos otra funcion para que devuelva true o false
     let test = true;
@@ -134,12 +139,13 @@ function validaEdad() { //hacemos otra funcion para que devuelva true o false
     return test;
 }
 
-function validaEdadJS(){
-
-}
+// function validaEdadJS(){
+//
+// }
 
 // function validaFormulario(event) {
-
+//     let test = true;
+//     if ()
 // }
 
 
